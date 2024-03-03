@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				}
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/signin`, opts)
+					const resp = await fetch(`${process.env.BACKEND_URL}api/signin`, opts)
 					const data = await resp.json();
 					console.log(data);
 					if (resp.status === 200) {
@@ -541,6 +541,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(`There was a problem with the fetch operation ${error}`)
 				}
 			},
+			handleForgotPassword: async (email) => {
+				const opts = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						"forgotForm": email
+					})
+				}
+				try{
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/forgotpassword`, opts)
+					const data = await resp.JSON();
+					console.log('forgot password' + data);
+					if(resp.status === 200) {
+						return true;
+					} else {
+						console.error(`Unexpected error: ${data.message}`);
+					}
+				} catch (error){
+					console.error(`There was a problem with the fetch operation ${error}`)
+				}
+			}
+			,
 			showGroupModal: () => {
 				setStore({ showGroupModal: true })
 			},
