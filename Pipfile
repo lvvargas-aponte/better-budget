@@ -21,6 +21,7 @@ typing-extensions = "*"
 flask-jwt-extended = "*"
 flask-bcrypt = "*"
 plaid-python = "*"
+colorama = "*"
 
 [requires]
 python_version = "3.10"

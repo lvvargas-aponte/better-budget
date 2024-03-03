@@ -14,17 +14,6 @@ const UserHome = () => {
             actions.handleGetUser();
             actions.fetchUserExpenses();
         }, [])
-        // useEffect(() => {
-        //     const getUser = async ()=>{
-        //         let response = await store.fetchUser
-        //         if (response){
-        //             setUser(store.user)
-        //         }
-        //         else{
-        //             alert("an error occured")
-        //         }
-        //     }
-        // }, []);
        
 
     return (
@@ -49,8 +38,8 @@ const UserHome = () => {
                     {store.userExpenses && store.userExpenses.map((item,index)=>(
                         <tr key={index}>
                           <td>{item.name}</td>
-                          <td>{item.amount}</td>
-                          <td>{item.date}</td>
+                          <td>${item.amount}</td>
+                          <td>{actions.formatDate(item.date, false)}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -120,29 +109,3 @@ const UserHome = () => {
         </div>
     )}
 export default UserHome;
-
-
-//   return (
-//     <div className='container '>
-//       {/* Display user information from store */}
-//       <Table striped bordered hover>
-//         {/* Display user expenses */}
-//         {/* ...table structure for userExpenses from store */}
-//       </Table>
-
-//       <Table striped bordered hover>
-//         {/* Display user groups */}
-//         {/* ...table structure for userGroups from store */}
-//       </Table>
-
-//       <Table striped bordered hover>
-//         {/* Display user piggy bank page */}
-//         {/* ...table structure for userPiggybankpage from store */}
-//       </Table>
-//     </div>
-//   );
-// };
-
-// export default UserHome;
-
-     

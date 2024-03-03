@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import { Context } from "../store/appContext";
-import {Button} from 'react-bootstrap';
 import "../../styles/styles.css";
 
 const PlaidLink = () => {
