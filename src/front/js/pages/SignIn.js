@@ -10,11 +10,11 @@ import '../../styles/signin.css'
 
 const SignIn = () => {
 
-/*  This was used to make the NavBar hidden on the SignIn page,
-    however it was decided to show. Props were used as argument to this page.
-    useEffect(() => {
-    props.setCurrentURL('/signin');
-  }, []) */
+  /*  This was used to make the NavBar hidden on the SignIn page,
+      however it was decided to show. Props were used as argument to this page.
+      useEffect(() => {
+      props.setCurrentURL('/signin');
+    }, []) */
 
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ const SignIn = () => {
 
   const handleClick = async () => {
     let results = await actions.handleLogin(email, password);
-    if (results){
+    if (results) {
       navigate("/home")
     }
   }
@@ -45,9 +45,16 @@ const SignIn = () => {
             Submit
           </button>
           <div className="links mb-3">
-            <Link to="/signup">
-              <span>Create Account</span >
-            </Link>
+            <div className="row">
+              <Link to="/signup">
+                <span>Create Account</span >
+              </Link>
+            </div>
+            <div className="row">
+              <Link to="/forgotpassword">
+                <span>Forgot Password</span >
+              </Link>
+            </div>
           </div>
         </div>
       </Container>
