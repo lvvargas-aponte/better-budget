@@ -39,7 +39,7 @@ const ForgotPassword = () => {
                         </Form.Text>
                     </Form.Group>
                     <button className="form-button mb-3" type="button" onClick={handleClick}>
-                        Submit
+                        Reset Password
                     </button>
                 </div>
             </Container>
