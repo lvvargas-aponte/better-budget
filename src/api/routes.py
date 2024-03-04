@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, render_template
 from flask_bcrypt import Bcrypt
 from api.models import db, User, Group, PiggyBank, Expenses
 from api.utils import generate_sitemap, APIException
@@ -19,6 +19,7 @@ from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchan
 import os
 import json
 import time
+import uuid
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -138,6 +139,27 @@ def handle_signin():
     elif email is None or password is None:
         return jsonify({"msg" : "Email and Password required"}), 400
 
+#Route for user to select forgot password
+@api.route('/forgotpassword', methods = ['GET','POST'])
+def forgot():
+    error = None
+    message = None
+    email = request.json.get('user_email', None)
+    user = User.query.filter_by(email=email).first()
+    if user:
+        code = str(uuid.uuid4())
+        user.change_configuration= {"password_reset_code": code}
+        user.save()
+            
+        # email the user
+        body_html = render_template('mail/user/password_reset.html',user=user)
+        body_text = render_template('mail/user/password_reset.txt', user=user)
+        email(user.email, "Password reset request", body_html, body_text)
+        message = 'You will receive a password reset email if we find that email in our system'
+    return render_template('user/forgot.html', form = form, error=error, message=message)
+    return "Forgot password"
+
+      
 
 #Route for user to change password
 @api.route('/user/<int:user_id>', methods = ['POST'])

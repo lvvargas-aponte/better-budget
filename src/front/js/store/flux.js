@@ -548,7 +548,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
-						"forgotForm": email
+						"ForgotForm": email
 					})
 				}
 				try{
