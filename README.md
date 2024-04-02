@@ -28,5 +28,4 @@ A budgeting web application for tracking individual and shared expenses and help
 - PostgreSQL 
 
 ## Contributors
-
 *This is a budget tracking webapp built by Jessica Jean, Christa Kelly, Benjamin Ly, and Valeria Vargas as part of the 4Geeks Full Stack Development course.*
